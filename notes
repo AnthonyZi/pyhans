@@ -1,0 +1,3 @@
+implement backpropagation to be executable in several threads
+-> the delta_weights and delta_biases should be added up
+-> each thread gets an individual set of [lay_input, lay_output_pre_activation, lay_output]
