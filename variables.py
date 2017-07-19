@@ -1,5 +1,8 @@
+import time
+
 #all
-verbosemax = True
+verbosemax = False
+verbose = True
 
 
 #pyhanslayer.py

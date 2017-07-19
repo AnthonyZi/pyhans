@@ -8,6 +8,9 @@ class HansNet(object):
 
     fcnt_cost_derivative = None
 
+    verbosemax0 = verbosemax
+    verbose0 = verbose
+
     def __init__(self, p_fcnt_cost_derivative):
         self.fcnt_cost_derivative = p_fcnt_cost_derivative
 
@@ -22,11 +25,12 @@ class HansNet(object):
 
     def backpropagate(self, p_network_out, p_desired_out):
         current_vector = self.fcnt_cost_derivative(p_network_out, p_desired_out)
-        if verbosemax:
+        if self.verbosemax0 or self.verbose0:
             print "backprop - cost: ", current_vector
+            print "delta.shape: ", current_vector.shape
         for lay in reversed(self.layers):
             current_vector = lay.backprop(current_vector)
-        if verbosemax:
+        if self.verbosemax0:
             print "input_derivatives:"
             print current_vector
 
