@@ -37,14 +37,10 @@ class HansLayer(object):
 
     def __init__(self, p_inp_dims, p_out_dims, p_inp_vec_dim, p_out_vec_dim, p_funct_activation, p_funct_activation_deriv, p_weights_min_init = None, p_weights_max_init = None, p_bias_init = None):
 
-        if not isinstance(p_inp_dims, list):
-            exit(100)
-        if not isinstance(p_out_dims, list):
-            exit(101)
-        if not isinstance(p_inp_vec_dim, int):
-            exit(102)
-        if not isinstance(p_out_vec_dim, int):
-            exit(103)
+        assert isinstance(p_inp_dims, list), "p_inp_dims is not a list"
+        assert isinstance(p_out_dims, list), "p_out_dims is not a list"
+        assert isinstance(p_inp_vec_dim, int), "p_inp_vec_dim is not a int"
+        assert isinstance(p_out_vec_dim, int), "p_out_vec_dim is not a int"
 
         self.input_dimensions = p_inp_dims
         self.output_dimensions = p_out_dims
@@ -145,22 +141,15 @@ class HansLayer_Conv_2D(HansLayer):
         if p_padding == None:
             p_padding = [0,0,0]
 
-        if not isinstance(p_kernel_dims, list):
-            exit(104)
-        if not isinstance(p_stride, list):
-            exit(105)
-        if not isinstance(p_padding, list):
-            exit(106)
+        assert isinstance(p_kernel_dims, list), "p_kernel_dims is not a list"
+        assert isinstance(p_stride, list): "p_stride is not a list"
+        assert isinstance(p_padding, list): "p_padding is not a list"
 
-        if not len(p_inp_dims) == 2:
-            exit(120)
-        if not len(p_kernel_dims) == 2:
-            exit(121)
-        if not len(p_stride) == 2:
-            exit(122)
+        assert len(p_inp_dims) == 2, "p_inp_dims wrong dimension"
+        assert len(p_kernel_dims) == 2, "p_kernel_dims wrong dimension"
+        assert len(p_stride) == 2, "p_stride wrong dimension"
         #p_padding : [padding_horizontally, padding_vertically, padding_value]
-        if not len(p_padding) == 3:
-            exit(123)
+        assert len(p_padding) == 3, "p_padding wrong dimension"
 
         kernel_dims = np.array(p_kernel_dims)
         stride = np.array(p_stride)

@@ -66,12 +66,8 @@ def pad2dvec(p_mat, p_pad_dimensions, p_values):
     return np.pad(p_mat, [(t,b), (l,r), (0,0)], 'constant', constant_values=p_values)
 
 
-def im2col_sliding_strided(p_mat, p_kernel_size, p_stride=[1,1]):
-#    shp = list(p_kernel_size) + list(np.array(p_mat.shape) - p_kernel_size +1)
-#    strd = list(p_mat.strides) + list(p_mat.strides)
-#    out_view = np.lib.stride_tricks.as_strided(p_mat, shape=shp, strides=strd)
-#    return out_view.reshape(shp[0]*shp[1],-1)[:,::p_stepsize]
-    m,n = p_mat.shape
+def im2col(p_mat, p_kernel_size, p_stride=[1,1]):
+    m,n = p_mat.shape[0:2]
     col_extent = n - p_kernel_size[1] + 1
     row_extent = m - p_kernel_size[0] + 1
 
@@ -83,3 +79,8 @@ def im2col_sliding_strided(p_mat, p_kernel_size, p_stride=[1,1]):
 
     #Get all actual indices & index into input array for final output
     return np.take(p_mat, start_idx.ravel()[:,np.newaxis] + offset_idx.ravel())
+#another attempt could be:
+#    shp = list(p_kernel_size) + list(np.array(p_mat.shape) - p_kernel_size +1)
+#    strd = list(p_mat.strides) + list(p_mat.strides)
+#    out_view = np.lib.stride_tricks.as_strided(p_mat, shape=shp, strides=strd)
+#    return out_view.reshape(shp[0]*shp[1],-1)[:,::p_stepsize]

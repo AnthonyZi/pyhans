@@ -1,10 +1,9 @@
 import numpy as np
 
 def print3dmat(p_mat):
-    if type(p_mat) != np.ndarray:
-        exit(1)
-    if len(p_mat.shape) != 3:
-        exit(2)
+    assert isinstance(p_mat, np.ndarray), "p_mat wrong type"
+    assert len(p_mat.shape) == 3, "p_mat wrong dimensions"
+
     mats = []
     for i in xrange(p_mat.shape[2]):
         mats.append(p_mat[:,:,i])
@@ -20,3 +19,10 @@ def print3dmat(p_mat):
 def print4dmat(p_mat):
     for mat in p_mat:
         print3dmat(mat)
+
+def varprint(p_mat):
+    assert isinstance(p_mat, np.ndarray), "p_mat wrong type"
+    assert len(p_mat.shape) in [3,4], "p_mat-dimension not supported"
+    options = { 3 : print3dmat,
+                4 : print4dmat }
+    options[len(p_mat.shape)](p_mat)

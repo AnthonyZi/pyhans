@@ -56,6 +56,8 @@ for i in xrange(100):
 inp = np.array(inp)
 des = np.array(des)
 
+arr = np.random.randint(3, size=[4,4,2])
+weights = np.random.randint(3, size=[2, 2,2, 3])
 
 
 
@@ -156,3 +158,5 @@ if __name__ == "__main__":
 ##  dd1 (x) yy1 = daa0
 ##  -> dd1 (*) yf1 = daa0
 ##  -> dd1 (*) ww1 = daa0
+
+
