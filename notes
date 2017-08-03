@@ -1,3 +1,54 @@
-implement backpropagation to be executable in several threads
--> the delta_weights and delta_biases should be added up
--> each thread gets an individual set of [lay_input, lay_output_pre_activation, lay_output]
+benchmark to decide which function (numpy or scipy-algo) is used for forward-/backward-propagation
++ scipy algo for forward-prop
++ scipy algo for weights-backprop
+- scipy algo for input-backprop
+- benchmark algo itself
+
+padding in the algorithm?
+- feedforward
+    - numpy
+    - scipy
+- backprop weights
+    - numpy
+    - scipy
+- backprop inputs
+    - numpy
+    - scipy
+
+what about strides in backpropagation
++ weights_backprop
+    + numpy
+    + scipy
+- input_backprop
+    - numpy
+    - scipy
+
+parallelization of the code (multithreading!)
+(implement backpropagation to be executable in several threads)
+(-> the delta_weights and delta_biases should be added up)
+(-> each thread gets an individual set of [lay_input, lay_output_pre_activation, lay_output])
+- forwardprop
+    - numpy
+    - scipy
+- backprop weights
+    - numpy
+    - scipy
+- backprop inputs
+    - numpy
+    - scipy
+
+
+
+IDEEN:
+update-factor vergroessern fuer layer nahe dem input
+zwischenspeicherung der variabeln um training pausieren zu koennen
+automatisches fortfuehren des trainings wenn der pc gestartet wurde
+um ein neues feature in ein schon bestehendes netz zu lernen könnte man alle weights und biases halbieren um training wieder zu ermöglichen
+kernels fixieren (bewussten anteil der weights und biases) - hier keine updates der weights und biases
+unterschiedliche update-faktoren fuer weights und biases
+
+
+[postponed] convolution in backrop breaks for very large kernels!
+            -> scipy algo helps out
+
+[fixed] is crosscorrelation the right operation for each (feedforward, backprop weights and backprop_input)?????? -> no! had to be modified

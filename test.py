@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import numpy as np
 
-from mathelp import *
+from myhelp import *
 from pyhansmath import *
 
 #inp = np.random.randint(2, size=[4, 4, 2])
@@ -58,6 +58,7 @@ des = np.array(des)
 
 arr = np.random.randint(3, size=[4,4,2])
 weights = np.random.randint(3, size=[2, 2,2, 3])
+reord = split_3d_z_dim(arr)
 
 
 
@@ -158,5 +159,14 @@ if __name__ == "__main__":
 ##  dd1 (x) yy1 = daa0
 ##  -> dd1 (*) yf1 = daa0
 ##  -> dd1 (*) ww1 = daa0
-
-
+#############################################
+###### pyhans ###############################
+## aa0 (*) ww1 = aa1   # cross correlation ##
+## dd1 = oo1-aa1                           ##
+#### gradients on weights ####             ##
+## dww1 = aa1 (*) dd1                      ##
+#### gradients on input ####               ##
+## daa0 = dd1 (x) ww1  # convolution full  ##
+## daa0 = dd1 (*) wr1  # wr1 = rot180(ww1) ##
+#############################################
+#############################################
